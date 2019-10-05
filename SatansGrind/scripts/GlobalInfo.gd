@@ -1,4 +1,4 @@
 extends Node
 
-var worldWidth = 3000;
-var worldHeight = 1500; 
+var worldWidth = 600;
+var worldHeight = 600; 
