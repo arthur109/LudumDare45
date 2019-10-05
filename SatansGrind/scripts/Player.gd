@@ -5,7 +5,7 @@ export (int) var speed = 200
 #var reload = reloadSpeed
 #var playerBullet = preload("res://Scenes/PlayerBullet.tscn")
 var velocity = Vector2()
-onready var Sprite := $AnimatedSprite 
+onready var Sprite := $BaseSprite 
 var damage = 1;
 
 
@@ -41,3 +41,4 @@ func _physics_process(delta):
 	else:
 		if Sprite.get_animation() != "idle":
 			Sprite.play("idle")
+

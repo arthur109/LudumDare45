@@ -1,46 +1,66 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Character/Player/idle/idle1.png" type="Texture" id=2]
-[ext_resource path="res://Character/Player/idle/idle2.png" type="Texture" id=3]
-[ext_resource path="res://Character/Player/idle/idle3.png" type="Texture" id=4]
-[ext_resource path="res://Character/Player/idle/idle4.png" type="Texture" id=5]
-[ext_resource path="res://Character/Player/run/run1.png" type="Texture" id=6]
-[ext_resource path="res://Character/Player/run/run2.png" type="Texture" id=7]
-[ext_resource path="res://Character/Player/run/run3.png" type="Texture" id=8]
-[ext_resource path="res://Character/Player/run/run4.png" type="Texture" id=9]
+[ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
+[ext_resource path="res://assets/character/idle/idle2.png" type="Texture" id=3]
+[ext_resource path="res://assets/character/idle/idle3.png" type="Texture" id=4]
+[ext_resource path="res://assets/character/idle/idle4.png" type="Texture" id=5]
+[ext_resource path="res://assets/character/idle/idle5.png" type="Texture" id=6]
+[ext_resource path="res://assets/character/running/running2.png" type="Texture" id=7]
+[ext_resource path="res://assets/character/running/running3.png" type="Texture" id=8]
+[ext_resource path="res://assets/character/running/running4.png" type="Texture" id=9]
+[ext_resource path="res://assets/character/running/running5.png" type="Texture" id=10]
+[ext_resource path="res://assets/character/running/running6.png" type="Texture" id=11]
+[ext_resource path="res://assets/character/running/running7.png" type="Texture" id=12]
+[ext_resource path="res://assets/character/running/running8.png" type="Texture" id=13]
+[ext_resource path="res://assets/character/running/running9.png" type="Texture" id=14]
+[ext_resource path="res://assets/character/running/running10.png" type="Texture" id=15]
+[ext_resource path="res://assets/character/running/running11.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.37871, 1.21808 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 28.5499, 10 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [  ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 38.3135, 57.016 )
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
 script = ExtResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="BaseSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 5.07666, 34.5995 )
 scale = Vector2( 5, 5 )
 shape = SubResource( 2 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 5.07666, 34.5995 )
@@ -48,6 +68,27 @@ scale = Vector2( 5, 5 )
 current = true
 smoothing_enabled = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Punch" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="Node2D"]
+[node name="Area2D" type="Area2D" parent="Punch"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punch/Area2D"]
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Punch"]
+frames = SubResource( 4 )
+frame = -1
+
+[node name="Slash" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Slash"]
+editor/display_folded = true
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/Area2D"]
+shape = SubResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
