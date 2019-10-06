@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -16,15 +16,7 @@
 [ext_resource path="res://assets/character/running/running9.png" type="Texture" id=14]
 [ext_resource path="res://assets/character/running/running10.png" type="Texture" id=15]
 [ext_resource path="res://assets/character/running/running11.png" type="Texture" id=16]
-[ext_resource path="res://scripts/Punch.gd" type="Script" id=17]
-[ext_resource path="res://assets/character/Punch/punch1.png" type="Texture" id=18]
-[ext_resource path="res://assets/character/Punch/punch2.png" type="Texture" id=19]
-[ext_resource path="res://assets/character/Punch/punch3.png" type="Texture" id=20]
-[ext_resource path="res://assets/character/Punch/punch4.png" type="Texture" id=21]
-[ext_resource path="res://assets/character/Punch/punch5.png" type="Texture" id=22]
-[ext_resource path="res://assets/character/Punch/punch6.png" type="Texture" id=23]
-[ext_resource path="res://assets/character/Punch/punch7.png" type="Texture" id=24]
-[ext_resource path="res://scripts/Dash.gd" type="Script" id=25]
+[ext_resource path="res://scripts/Dash.gd" type="Script" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -43,14 +35,14 @@ animations = [ {
 extents = Vector2( 4.2086, 1.21808 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 57.1801, 34.0666 )
+extents = Vector2( 28.5499, 10 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), null ],
+"frames": [  ],
 "loop": false,
-"name": "punch",
-"speed": 24.0
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -66,23 +58,28 @@ gradient = SubResource( 6 )
 [sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = -1.06872e+29
+angular_velocity = 2.65434e+014
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
 color_ramp = SubResource( 7 )
 
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 2.65434e+014
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
-scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
-speed = 300
 
 [node name="BaseSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -97,29 +94,23 @@ current = true
 smoothing_enabled = true
 
 [node name="Punch" type="Node2D" parent="."]
-script = ExtResource( 17 )
+editor/display_folded = true
 
 [node name="Area2D" type="Area2D" parent="Punch"]
-editor/display_folded = true
-position = Vector2( -22.988, 0 )
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Punch/Area2D"]
-position = Vector2( 56.6186, -0.851379 )
 shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Punch"]
-position = Vector2( 33.6307, -1.70291 )
-scale = Vector2( 3.44025, 3.44025 )
 frames = SubResource( 4 )
-animation = "punch"
-frame = 7
-playing = true
 
 [node name="Slash" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Area2D" type="Area2D" parent="Slash"]
+editor/display_folded = true
 monitoring = false
 monitorable = false
 
@@ -129,7 +120,7 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
 
 [node name="Dash" type="Node2D" parent="."]
-script = ExtResource( 25 )
+script = ExtResource( 17 )
 
 [node name="CharacterTrail" type="Particles2D" parent="Dash"]
 emitting = false
@@ -139,3 +130,12 @@ one_shot = true
 local_coords = false
 process_material = SubResource( 8 )
 texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="Dash"]
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.9
+local_coords = false
+process_material = SubResource( 9 )

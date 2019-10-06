@@ -34,6 +34,7 @@ format = 1
 tile_data = PoolIntArray( 1610612737, 0, 0, 1610612738, 0, 0 )
 
 [node name="ConqueredMap" type="TileMap" parent="TileMaps"]
+z_index = 1
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
 format = 1
@@ -43,6 +44,8 @@ tile_data = PoolIntArray( 655372, 8, 0, 1507367, 8, 0 )
 
 [node name="BlockPlacer" type="Node2D" parent="."]
 script = ExtResource( 6 )
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 7 )
