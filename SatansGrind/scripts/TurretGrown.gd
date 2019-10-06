@@ -25,10 +25,10 @@ func _process(delta: float) -> void:
 		temp.rotation_degrees = angle + offset;
 		temp.direction = direction;
 		add_child(temp);
-		shootCounter = 0 
-		
-	
-	
+		shootCounter = 0
+
+
+
 func getAngle() -> float:
 	var enemys = get_node("../Enemies/").get_children();
 	var closestDir = Vector2(1,1);
@@ -38,5 +38,5 @@ func getAngle() -> float:
 		if global_position.distance_to(x.global_position) < closestDistance:
 			closestDistance = global_position.distance_to(x.global_position);
 			closestDir = x.global_position - global_position
-			
+
 	return rad2deg(closestDir.angle())

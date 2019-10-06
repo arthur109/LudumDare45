@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/Enemies/Angle/run/Moving1.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/Enemies/Angle/attack/attacking8.png" type="Texture" id=18]
 [ext_resource path="res://assets/Enemies/Angle/attack/attacking9.png" type="Texture" id=19]
 [ext_resource path="res://assets/Enemies/Angle/attack/attacking1 (1).png" type="Texture" id=20]
+[ext_resource path="res://assets/InvertColorShader.tres" type="Material" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2211, 1.43324 )
@@ -35,13 +36,30 @@ animations = [ {
 "loop": false,
 "name": "attack",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": false,
+"name": "flinch_attack",
+"speed": 10.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "flinch_run",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 11.1164, 12.5287 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
-position = Vector2( 52.2592, 31.3271 )
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 50, 0, 100, 0, 100, 100, 0, 50 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"enemies",
+]]
+position = Vector2( 19.2498, 23.5602 )
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
 ConqueredTileIndex = 26
 
@@ -51,14 +69,29 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 1 )
 
 [node name="BaseSprite" type="AnimatedSprite" parent="."]
+use_parent_material = true
+position = Vector2( 0.552082, 0 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 2 )
-animation = "attack"
+animation = "flinch_attack"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource( 21 )
+margin_left = -48.0
+margin_top = -47.0
+margin_right = 36.0
+margin_bottom = 26.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.523369, 0 )
+position = Vector2( -1.52337, 0 )
 scale = Vector2( 3, 3 )
 shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -63.488, -48.5762 )
+shape = SubResource( 4 )
 disabled = true

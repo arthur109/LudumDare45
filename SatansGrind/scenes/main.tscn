@@ -30,6 +30,7 @@ script = ExtResource( 4 )
 [node name="LowerLayer" type="TileMap" parent="TileMaps"]
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
+collision_mask = 3
 format = 1
 
 [node name="UpperLayer" type="TileMap" parent="TileMaps"]

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (int) var speed = 200
 export (bool) var canDash = true
+
 #export (float) var reloadSpeed
 #var reload = reloadSpeed
 #var playerBullet = preload("res://Scenes/PlayerBullet.tscn")
