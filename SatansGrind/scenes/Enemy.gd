@@ -23,12 +23,10 @@ func _ready():
 
 func take_damage(attacker):
 	current_flinch = FLINCH_TIME
-	print(velocity)
 	
 	var damage_direction = attacker.global_position + Vector2(1,1)
 	
 	velocity -= (global_position - damage_direction).normalized()*speed * 2
-	print(velocity,"    ",(global_position - damage_direction).normalized())
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
 	
@@ -87,5 +85,4 @@ func _process(delta):
 		elif velocity.x < 0:
 			Sprite.flip_h = true
 	else:
-		self.visible = false
-		CollisionShape2D.disable = true
+		get_parent().remove_child(self)

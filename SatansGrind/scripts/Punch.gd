@@ -27,7 +27,6 @@ func _process(delta):
 	if timer <= 0.1 and damaged == false:
 		for area in Area2D.get_overlapping_areas():
 			var parent = area.get_parent()
-			print(parent)
 			if parent.is_in_group("enemies"):
 				parent.take_damage(self)
 				

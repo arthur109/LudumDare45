@@ -54,8 +54,12 @@ extents = Vector2( 11.1164, 12.5287 )
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 50, 0, 100, 0, 100, 100, 0, 50 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"enemies",
+]]
 position = Vector2( 19.2498, 23.5602 )
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
 ConqueredTileIndex = 26
 
@@ -80,14 +84,11 @@ margin_right = 36.0
 margin_bottom = 26.0
 
 [node name="Area2D" type="Area2D" parent="."]
-editor/display_folded = true
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.523369, 0 )
+position = Vector2( -1.52337, 0 )
 scale = Vector2( 3, 3 )
 shape = SubResource( 3 )
-disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
