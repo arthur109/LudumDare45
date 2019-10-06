@@ -60,7 +60,7 @@ position = Vector2( 19.2498, 23.5602 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
-ConqueredTileIndex = 26
+ConqueredTileIndex = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.15361, 38.0915 )

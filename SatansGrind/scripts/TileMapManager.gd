@@ -6,21 +6,24 @@ extends Node2D
 # var b: String = "text"
 
 # Called when the node enters the scene tree for the first time.
-var groundIndexes = [3,4,5]
-var wallIndexes = [27]
-var topIndexes = [25];
+var groundIndexes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+var wallIndexes = [21]
+var topIndexes = [22];
 
 var bottom;
 var top;
+
 onready var  BlockPlacer = get_node("../BlockPlacer")
 const PARTICLE_EFFECT = preload("res://scenes/BuildParticle.tscn")
 func _ready() -> void:
 	bottom = $LowerLayer
 	top = $UpperLayer
+	print($Floor);
+
 
 	for x in range(0,GlobalInfo.worldWidth):
 		for y in range(0,GlobalInfo.worldHeight):
-			bottom.set_cell(x,y,groundIndexes[randi() % groundIndexes.size()]);
+			$Floor.set_cell(x,y,groundIndexes[randi() % groundIndexes.size()]);
 
 func buildWall(var x, var y) -> void:
 
