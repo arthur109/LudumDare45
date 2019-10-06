@@ -50,6 +50,7 @@ func start(dir):
 		Player.velocity = Vector2(cos(dirRad), sin(dirRad)) * Player.speed * 3
 		
 		direction = Vector2(cos(dirRad), sin(dirRad))
+
 		
 		return self
 	
