@@ -57,7 +57,6 @@ func process_attack():
 	if Sprite.frame == 9 and Sprite.get_animation() == "attack":
 		map.set_cell(map.get_parent().world_to_index(closestPos.x,closestPos.y).x,map.get_parent().world_to_index(closestPos.x,closestPos.y).y,-1)
 		map.update_dirty_quadrants();
-		take_damage(self)
 
 
 
