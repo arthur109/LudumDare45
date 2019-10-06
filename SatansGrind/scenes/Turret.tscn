@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/TurretGrown.gd" type="Script" id=1]
+[ext_resource path="res://assets/turrettop.png" type="Texture" id=2]
+[ext_resource path="res://assets/turretbase.png" type="Texture" id=3]
+
+[node name="Turret" type="Node2D"]
+position = Vector2( 122.203, 220.318 )
+scale = Vector2( 8, 8 )
+script = ExtResource( 1 )
+shootSpeed = 0.2
+
+[node name="Turret" type="Sprite" parent="."]
+position = Vector2( 1.1641, 1.18674 )
+z_index = 1
+texture = ExtResource( 2 )
+offset = Vector2( 1.48565, 1.45591 )
+
+[node name="Base" type="Sprite" parent="."]
+texture = ExtResource( 3 )
