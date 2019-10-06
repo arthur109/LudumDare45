@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -56,6 +56,48 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.244444, 0.733333, 1 )
+colors = PoolColorArray( 1, 0.392157, 0, 0, 0.957031, 0.322817, 0.153275, 1, 0.895508, 0.775432, 0.248363, 1, 0.898039, 0.690196, 0.207843, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Curve" id=15]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0.5251, -119.68 ), 0.0, 10.3883, 0, 0, Vector2( 0.644322, 200 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="Curve" id=12]
+max_value = 6.0
+_data = [ Vector2( 0.016835, 6 ), 0.0, 0.0, 0, 0, Vector2( 0.995715, 4.0296 ), 12.4214, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 1
+emission_sphere_radius = 18.65
+flag_disable_z = true
+spread = 16.55
+flatness = 1.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity_random = 0.63
+angular_velocity = 49.66
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.56
+linear_accel_curve = SubResource( 16 )
+radial_accel = -10.34
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 11 )
+hue_variation = 1.0
+hue_variation_random = 0.01
+
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.844444 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.497694, 0, 0, 0.380392 )
@@ -88,25 +130,29 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 1.74707, 43.8497 )
 scale = Vector2( 5, 5 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 5.07666, 34.5995 )
 scale = Vector2( 5, 5 )
 current = true
 smoothing_enabled = true
 
 [node name="Punch" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 17 )
 
 [node name="Area2D" type="Area2D" parent="Punch"]
 editor/display_folded = true
+visible = false
 position = Vector2( 27.7558, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Punch/Area2D"]
@@ -121,6 +167,7 @@ playing = true
 
 [node name="Slash" type="Node2D" parent="."]
 editor/display_folded = true
+visible = false
 
 [node name="Area2D" type="Area2D" parent="Slash"]
 editor/display_folded = true
@@ -132,7 +179,18 @@ shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
 
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0.969238, -32.6534 )
+amount = 80
+lifetime = 1.5
+preprocess = 600.0
+speed_scale = 1.2
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 14 )
+
 [node name="Dash" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 25 )
 
 [node name="CharacterTrail" type="Particles2D" parent="Dash"]
