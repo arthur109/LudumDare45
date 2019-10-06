@@ -18,8 +18,6 @@ var damage = 1;
 onready var Dash := $Dash
 onready var Punch := $Punch
 
-
-
 func _process(delta):
 	pass
 	
@@ -37,27 +35,9 @@ func get_dir_input():
 		
 	return inputVelocity.normalized()
 	
-var lastIntendedDir = 0	
-var intendedDirTimer = 0
-
-func get_intended_dir(delta):
+func get_intended_dir():
 	var dirInput = get_dir_input()
-	
-	var dir = rad2deg(dirInput.angle())
-	
-	if dirInput.length_squared() > 0 and dir != lastIntendedDir:
-		intendedDirTimer -= delta
-		
-		if intendedDirTimer <= 0 or int (lastIntendedDir) % 90 == 0:
-			lastIntendedDir = dir
-			intendedDirTimer = 0.05
-		
-	else:
-		intendedDirTimer = 0.05
-		
-	return lastIntendedDir
-		
-	
+	return rad2deg(dirInput.angle()) if dirInput.length_squared() > 0 else 180 if Sprite.flip_h else 0
 	
 func move():
 	velocity = move_and_slide(get_dir_input() * speed)
@@ -72,7 +52,7 @@ func move():
 func _physics_process(delta):
 #	reload -= delta
 	var dirInput = get_dir_input()
-	var intendedDir = get_intended_dir(delta)
+	var intendedDir = get_intended_dir()
 	
 	if currentAbility == null:
 		move()

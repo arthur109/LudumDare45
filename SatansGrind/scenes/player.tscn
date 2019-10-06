@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://assets/character/Punch/punch6.png" type="Texture" id=23]
 [ext_resource path="res://assets/character/Punch/punch7.png" type="Texture" id=24]
 [ext_resource path="res://scripts/Dash.gd" type="Script" id=25]
+[ext_resource path="res://assets/DashTrail.tres" type="Material" id=26]
+[ext_resource path="res://assets/DashParticles.tres" type="Material" id=27]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -56,74 +58,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.244444, 0.733333, 1 )
-colors = PoolColorArray( 1, 0.392157, 0, 0, 0.957031, 0.322817, 0.153275, 1, 0.895508, 0.775432, 0.248363, 1, 0.898039, 0.690196, 0.207843, 0 )
-
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
-
-[sub_resource type="Curve" id=8]
-min_value = -200.0
-max_value = 200.0
-_data = [ Vector2( 0.5251, -119.68 ), 0.0, 10.3883, 0, 0, Vector2( 0.644322, 200 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
-
-[sub_resource type="Curve" id=10]
-max_value = 6.0
-_data = [ Vector2( 0.016835, 6 ), 0.0, 0.0, 0, 0, Vector2( 0.995715, 4.0296 ), 12.4214, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
-
-[sub_resource type="ParticlesMaterial" id=12]
-emission_shape = 1
-emission_sphere_radius = 18.65
-flag_disable_z = true
-spread = 16.55
-flatness = 1.0
-gravity = Vector3( 0, -100, 0 )
-initial_velocity_random = 0.63
-angular_velocity = 49.66
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 100.0
-linear_accel_random = 0.56
-linear_accel_curve = SubResource( 9 )
-radial_accel = -10.34
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 7 )
-hue_variation = 1.0
-hue_variation_random = 0.01
-
-[sub_resource type="Gradient" id=13]
-offsets = PoolRealArray( 0, 0.844444 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.497694, 0, 0, 0.380392 )
-
-[sub_resource type="GradientTexture" id=14]
-gradient = SubResource( 13 )
-
-[sub_resource type="ParticlesMaterial" id=15]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-angular_velocity = 2.65434e+14
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 4.0
-color_ramp = SubResource( 14 )
-
-[sub_resource type="ParticlesMaterial" id=16]
-flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
-angular_velocity = 2.65434e+14
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-
-[sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 34.4277, 63.0475 )
-
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
 collision_layer = 524289
@@ -133,7 +67,7 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 5
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -197,12 +131,4 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 0.9
 local_coords = false
-process_material = SubResource( 16 )
-
-[node name="Area2D" type="Area2D" parent="Dash"]
-monitoring = false
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash/Area2D"]
-shape = SubResource( 17 )
-[connection signal="area_entered" from="Dash/Area2D" to="Dash" method="_on_Area2D_area_entered"]
+process_material = ExtResource( 27 )
