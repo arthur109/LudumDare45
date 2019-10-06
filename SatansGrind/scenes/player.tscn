@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -16,7 +16,15 @@
 [ext_resource path="res://assets/character/running/running9.png" type="Texture" id=14]
 [ext_resource path="res://assets/character/running/running10.png" type="Texture" id=15]
 [ext_resource path="res://assets/character/running/running11.png" type="Texture" id=16]
-[ext_resource path="res://scripts/Dash.gd" type="Script" id=17]
+[ext_resource path="res://scripts/Punch.gd" type="Script" id=17]
+[ext_resource path="res://assets/character/Punch/punch1.png" type="Texture" id=18]
+[ext_resource path="res://assets/character/Punch/punch2.png" type="Texture" id=19]
+[ext_resource path="res://assets/character/Punch/punch3.png" type="Texture" id=20]
+[ext_resource path="res://assets/character/Punch/punch4.png" type="Texture" id=21]
+[ext_resource path="res://assets/character/Punch/punch5.png" type="Texture" id=22]
+[ext_resource path="res://assets/character/Punch/punch6.png" type="Texture" id=23]
+[ext_resource path="res://assets/character/Punch/punch7.png" type="Texture" id=24]
+[ext_resource path="res://scripts/Dash.gd" type="Script" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -39,10 +47,10 @@ extents = Vector2( 28.5499, 10 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), null ],
 "loop": false,
 "name": "default",
-"speed": 5.0
+"speed": 24.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -58,7 +66,7 @@ gradient = SubResource( 6 )
 [sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 2.65434e+014
+angular_velocity = 2.65434e+14
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -67,7 +75,7 @@ color_ramp = SubResource( 7 )
 [sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
-angular_velocity = 2.65434e+014
+angular_velocity = 2.65434e+14
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -94,17 +102,22 @@ current = true
 smoothing_enabled = true
 
 [node name="Punch" type="Node2D" parent="."]
-editor/display_folded = true
+script = ExtResource( 17 )
 
 [node name="Area2D" type="Area2D" parent="Punch"]
-monitoring = false
+editor/display_folded = true
+position = Vector2( 27.7558, 0 )
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Punch/Area2D"]
 shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Punch"]
+position = Vector2( 12.9413, 0 )
+scale = Vector2( 2.49168, 2.49168 )
 frames = SubResource( 4 )
+frame = 7
+playing = true
 
 [node name="Slash" type="Node2D" parent="."]
 editor/display_folded = true
@@ -120,7 +133,7 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
 
 [node name="Dash" type="Node2D" parent="."]
-script = ExtResource( 17 )
+script = ExtResource( 25 )
 
 [node name="CharacterTrail" type="Particles2D" parent="Dash"]
 emitting = false

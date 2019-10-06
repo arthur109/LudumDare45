@@ -57,6 +57,7 @@ points = PoolVector2Array( 50, 0, 100, 0, 100, 100, 0, 50 )
 [node name="KinematicBody2D" type="KinematicBody2D"]
 position = Vector2( 19.2498, 23.5602 )
 script = ExtResource( 1 )
+ConqueredTileIndex = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.15361, 38.0915 )
