@@ -30,6 +30,7 @@ func _process(delta):
 			var parent = area.get_parent()
 			if parent.is_in_group("enemies"):
 				parent.take_damage(self)
+				get_node("../Camera2D").shake(1,20,1);
 				
 		damaged = true
 

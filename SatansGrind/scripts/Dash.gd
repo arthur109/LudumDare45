@@ -39,6 +39,7 @@ func start(dir):
 		var dirRad = deg2rad(dir)
 		
 		Player.velocity = Vector2(cos(dirRad), sin(dirRad)) * Player.speed * 10
+		get_node("../Camera2D").shake(1,10,1);
 		direction = Player.velocity / 3000
 		
 		return self
