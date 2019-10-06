@@ -41,7 +41,6 @@ func _process(delta: float) -> void:
 		
 		var tile_pos = (mouse_pos-global_position)/scale/bottom.get_cell_size()
 		buildWall(int(tile_pos.x),int(tile_pos.y))
-		
-func index_to_world(x,y) -> Vector2:
-	return Vector2(int(x),int(y))*scale*bottom.get_cell_size+global_position
+
+	
 	
