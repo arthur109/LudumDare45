@@ -4,6 +4,7 @@ var velocity = Vector2()
 var onBlock
 var closestPos = global_position
 
+
 var map
 
 export (int) var ConqueredTileIndex
@@ -12,7 +13,9 @@ onready var Sprite := $BaseSprite
 onready var Shader := $ColorRect
 var health = 5
 
-const FLINCH_TIME = 0.3
+var flinch_amount = 5
+var in_flinch = false
+const FLINCH_TIME = 0.1
 var current_flinch = FLINCH_TIME
 var damage = 1
 
@@ -23,8 +26,8 @@ func _ready():
 
 func take_damage(attacker):
 	current_flinch = FLINCH_TIME
-	
-	velocity += attacker.direction * speed * 15
+	in_flinch = true
+	velocity += attacker.direction * speed * flinch_amount
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
 	
@@ -60,14 +63,16 @@ func process_attack():
 		take_damage(self)
 
 
-
-
 func _process(delta):
 	if health > 0:
-		velocity += get_direction(map)
+		if !in_flinch:
+			velocity = get_direction(map)
+		else:
+			print(velocity)
+			velocity*= 0.999
 		
 		if !onBlock:
-			velocity = move_and_slide(velocity)*delta
+			move_and_slide(velocity)*delta
 		else:
 			process_attack()
 
@@ -77,6 +82,7 @@ func _process(delta):
 		current_flinch -= delta
 		if (current_flinch <= 0):
 			Sprite.modulate = Color(1,1,1,1)
+			in_flinch = false
 
 
 		if velocity.x > 0:
@@ -84,6 +90,5 @@ func _process(delta):
 		elif velocity.x < 0:
 			Sprite.flip_h = true
 		
-		velocity = Vector2(0,0)
 	else:
 		get_parent().remove_child(self)
