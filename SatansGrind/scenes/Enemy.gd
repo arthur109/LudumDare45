@@ -8,11 +8,23 @@ var map
 
 export (int) var speed = 200
 onready var Sprite := $BaseSprite
+onready var Shader := $ColorRect
+var health = 5
+
+const FLINCH_TIME = 0.3
+var current_flinch = FLINCH_TIME
+var damage = 1
 
 
 func _ready():
 	map = get_node("../../TileMaps/ConqueredMap")
 	Sprite.play("run")
+	
+func take_damage(attacker):
+	current_flinch = FLINCH_TIME
+	velocity *= -2
+	Sprite.modulate = Color(0.8,0,0)
+	health -= attacker.damage
 
 func get_direction(var map) -> Vector2:
 	var leastDist = 1000
@@ -41,6 +53,7 @@ func process_attack():
 	if Sprite.frame == 9 and Sprite.get_animation() == "attack":
 		map.set_cell(map.get_parent().world_to_index(closestPos.x,closestPos.y).x,map.get_parent().world_to_index(closestPos.x,closestPos.y).y,-1)
 		map.update_dirty_quadrants();
+		take_damage(self)
 
 
 	
@@ -54,6 +67,10 @@ func _process(delta):
 		
 	if (Sprite.get_animation() == "attack" and Sprite.frame == 9) and Sprite.get_animation() != "run":
 		Sprite.play("run")
+	
+	current_flinch -= delta
+	if (current_flinch <= 0):
+		Sprite.modulate = Color(1,1,1,1)
 		
 	
 	if velocity.x > 0:
