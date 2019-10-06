@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Moving1.png-034b1953d9715d297f1d76ca941cdbba.stex"
+path="res://.import/custom_tilemap.png-13819117d6b664540d9d050440e86486.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Angle/idle/Moving1.png"
-dest_files=[ "res://.import/Moving1.png-034b1953d9715d297f1d76ca941cdbba.stex" ]
+source_file="res://assets/custom_tilemap.png"
+dest_files=[ "res://.import/custom_tilemap.png-13819117d6b664540d9d050440e86486.stex" ]
 
 [params]
 

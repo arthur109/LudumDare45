@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Moving8.png-0a8236ccb27c3ca36c39c5bea1f9da5c.stex"
+path="res://.import/Moving8.png-28f6d691a5fdc77043d0e2ed6eff7e98.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Angle/idle/Moving8.png"
-dest_files=[ "res://.import/Moving8.png-0a8236ccb27c3ca36c39c5bea1f9da5c.stex" ]
+source_file="res://assets/Enemies/Angle/run/Moving8.png"
+dest_files=[ "res://.import/Moving8.png-28f6d691a5fdc77043d0e2ed6eff7e98.stex" ]
 
 [params]
 

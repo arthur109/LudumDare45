@@ -13,11 +13,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-#	angle += delta*20
-	var offset = 45;
+	angle = getAngle();
+	print(angle)
+	var offset =  (randf()*10)-5;
 	var direction = Vector2(cos(deg2rad(angle+offset)),sin(deg2rad(angle+offset)))
-	$Turret.rotation_degrees = angle;
-	print((1-(shootCounter/shootSpeed)));
+	$Turret.rotation_degrees = angle-45;
 	$Turret.offset = Vector2(1,1)*pow(1-(shootCounter/shootSpeed),1);
 	shootCounter += delta;
 	if shootCounter >= shootSpeed:
@@ -27,4 +27,16 @@ func _process(delta: float) -> void:
 		add_child(temp);
 		shootCounter = 0 
 		
-	pass
+	
+	
+func getAngle() -> float:
+	var enemys = get_node("../Enemies/").get_children();
+	var closestDir = Vector2(1,1);
+	var closestDistance = 100000;
+	print(enemys.size())
+	for x in enemys:
+		if global_position.distance_to(x.global_position) < closestDistance:
+			closestDistance = global_position.distance_to(x.global_position);
+			closestDir = x.global_position - global_position
+			
+	return rad2deg(closestDir.angle())

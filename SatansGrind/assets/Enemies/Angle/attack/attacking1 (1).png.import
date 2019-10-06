@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Moving7.png-edff36d71851c359813f846452676098.stex"
+path="res://.import/attacking1 (1).png-49c75183d3ce33c6b8ca355588652eac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Angle/idle/Moving7.png"
-dest_files=[ "res://.import/Moving7.png-edff36d71851c359813f846452676098.stex" ]
+source_file="res://assets/Enemies/Angle/attack/attacking1 (1).png"
+dest_files=[ "res://.import/attacking1 (1).png-49c75183d3ce33c6b8ca355588652eac.stex" ]
 
 [params]
 
