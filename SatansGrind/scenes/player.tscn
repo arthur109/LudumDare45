@@ -59,8 +59,30 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 32.7554, 62.2113 )
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.844444 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.497694, 0, 0, 0.380392 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+color_ramp = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 2.65434e+14
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 29.4104, 59.2845 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
@@ -137,8 +159,9 @@ local_coords = false
 process_material = ExtResource( 28 )
 
 [node name="Area2D" type="Area2D" parent="Dash"]
+monitoring = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dash/Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 [connection signal="area_entered" from="Dash/Area2D" to="Dash" method="_on_Area2D_area_entered"]
