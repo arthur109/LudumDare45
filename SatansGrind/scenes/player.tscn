@@ -66,7 +66,7 @@ gradient = SubResource( 6 )
 [sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 2.65434e+14
+angular_velocity = 2.65434e+014
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
@@ -75,7 +75,7 @@ color_ramp = SubResource( 7 )
 [sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
-angular_velocity = 2.65434e+14
+angular_velocity = 2.65434e+014
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -87,7 +87,7 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 1
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
