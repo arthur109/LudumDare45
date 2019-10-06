@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/SelfDestruct.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+scale = Vector2( 5, 5 )
+z_index = 1
+amount = 12
+lifetime = 0.6
+explosiveness = 1.0
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+spread = 180.0
+gravity = Vector2( 0, 10 )
+initial_velocity = 40.0
+initial_velocity_random = 1.0
+color = Color( 0.27451, 0.25098, 0.192157, 0.866667 )
+hue_variation = 0.2
+hue_variation_curve = SubResource( 1 )
+script = ExtResource( 1 )
+maxlife = 0.6

@@ -12,6 +12,8 @@ var topIndexes = [0,7];
 
 var bottom;
 var top;
+
+const PARTICLE_EFFECT = preload("res://scenes/BuildParticle.tscn")
 func _ready() -> void:
 	bottom = $LowerLayer
 	top = $UpperLayer
@@ -26,6 +28,10 @@ func buildWall(var x, var y) -> void:
 	top.set_cell(x,y,topIndexes[randi() % (topIndexes.size())]);
 	bottom.update_dirty_quadrants();
 	top.update_dirty_quadrants();
+	var temp = PARTICLE_EFFECT.instance();
+	temp.global_position = get_global_mouse_position();
+	get_parent().add_child(temp);
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("place_block"):

@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="Particles2D" type="CPUParticles2D"]
+amount = 10
