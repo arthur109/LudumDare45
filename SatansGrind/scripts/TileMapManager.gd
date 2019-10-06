@@ -7,8 +7,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 var groundIndexes = [3,4,5]
-var wallIndexes = [1,2]
-var topIndexes = [0,7];
+var wallIndexes = [27]
+var topIndexes = [25];
 
 var bottom;
 var top;

@@ -6,6 +6,7 @@ var closestPos = global_position
 
 var map
 
+export (int) var ConqueredTileIndex
 export (int) var speed = 200
 onready var Sprite := $BaseSprite
 
@@ -20,7 +21,7 @@ func get_direction(var map) -> Vector2:
 	var notOnGlobalPos = false
 	for x in GlobalInfo.worldWidth:
 		for y in GlobalInfo.worldHeight:
-			if map.get_cell(x,y) != -1 and map.get_cell(x,y) == 8 and map.get_parent().index_to_world(x,y).distance_to(global_position) <= leastDist:
+			if map.get_cell(x,y) != -1 and map.get_cell(x,y) == ConqueredTileIndex  and map.get_parent().index_to_world(x,y).distance_to(global_position) <= leastDist:
 				leastDist = map.get_parent().index_to_world(x,y).distance_to(global_position) + map.cell_size.x/2
 				closestPos = map.get_parent().index_to_world(x,y) + map.cell_size/2
 				notOnGlobalPos = true
