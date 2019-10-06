@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/Enemies/Angle/run/Moving1.png" type="Texture" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://assets/Enemies/Angle/attack/attacking9.png" type="Texture" id=19]
 [ext_resource path="res://assets/Enemies/Angle/attack/attacking1 (1).png" type="Texture" id=20]
 [ext_resource path="res://assets/InvertColorShader.tres" type="Material" id=21]
+[ext_resource path="res://assets/DashTrail.tres" type="Material" id=22]
+[ext_resource path="res://assets/DashParticles.tres" type="Material" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2211, 1.43324 )
@@ -50,9 +52,6 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 11.1164, 12.5287 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 50, 0, 100, 0, 100, 100, 0, 50 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=[
 "enemies",
@@ -90,8 +89,12 @@ position = Vector2( -1.52337, 0 )
 scale = Vector2( 3, 3 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="KnockBack" type="Node2D" parent="."]
+
+[node name="Trail" type="Particles2D" parent="KnockBack"]
 visible = false
-position = Vector2( -63.488, -48.5762 )
-shape = SubResource( 4 )
-disabled = true
+process_material = ExtResource( 22 )
+
+[node name="Particles2D" type="Particles2D" parent="KnockBack"]
+position = Vector2( -3.62893, -2.52447 )
+process_material = ExtResource( 23 )
