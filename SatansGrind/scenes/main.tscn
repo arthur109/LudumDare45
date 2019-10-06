@@ -50,6 +50,7 @@ format = 1
 tile_data = PoolIntArray( 1507367, 8, 0 )
 
 [node name="BlockPlacer" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="cursor" type="Sprite" parent="BlockPlacer"]
@@ -76,6 +77,7 @@ axis_stretch_vertical = 2
 [node name="Turret" parent="." instance=ExtResource( 9 )]
 
 [node name="EnemySpawner" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="Point1" type="Position2D" parent="EnemySpawner"]

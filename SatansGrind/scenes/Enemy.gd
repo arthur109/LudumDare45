@@ -26,7 +26,7 @@ func take_damage(attacker):
 	
 	var damage_direction = attacker.global_position + Vector2(1,1)
 	
-	velocity -= (global_position - damage_direction).normalized()*speed * 2
+	velocity += (global_position - damage_direction).normalized()*speed * 20
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
 	
@@ -66,7 +66,8 @@ func process_attack():
 
 func _process(delta):
 	if health > 0:
-		velocity = get_direction(map)
+		velocity += get_direction(map)
+		
 		if !onBlock:
 			velocity = move_and_slide(velocity)*delta
 		else:
@@ -84,5 +85,7 @@ func _process(delta):
 			Sprite.flip_h = false
 		elif velocity.x < 0:
 			Sprite.flip_h = true
+		
+		velocity = Vector2(0,0)
 	else:
 		get_parent().remove_child(self)
