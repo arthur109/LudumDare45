@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var AnimatedSprite := $AnimatedSprite 
+onready var Area2D := $Area2D
 onready var Player := get_parent()
 
 var cooldown = 0
@@ -31,6 +32,8 @@ func start(dir):
 		
 		var dirRad = deg2rad(dir)
 		Player.velocity = Vector2(cos(dirRad), sin(dirRad)) * Player.speed * 0.2
+		
+		
 		
 		return self
 	

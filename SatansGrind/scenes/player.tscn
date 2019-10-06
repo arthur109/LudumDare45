@@ -82,7 +82,7 @@ speed = 300
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -102,7 +102,6 @@ script = ExtResource( 17 )
 [node name="Area2D" type="Area2D" parent="Punch"]
 editor/display_folded = true
 position = Vector2( -22.988, 0 )
-monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Punch/Area2D"]
