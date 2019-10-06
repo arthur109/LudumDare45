@@ -30,8 +30,8 @@ func take_damage(attacker):
 	velocity += attacker.direction * speed * flinch_amount
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
-	
-	
+
+
 
 func get_direction(var map) -> Vector2:
 	var leastDist = 1000
@@ -69,7 +69,7 @@ func _process(delta):
 		else:
 			print(velocity)
 			velocity*= 0.999
-		
+
 		if !onBlock:
 			move_and_slide(velocity)*delta
 		else:
@@ -88,6 +88,6 @@ func _process(delta):
 			Sprite.flip_h = false
 		elif velocity.x < 0:
 			Sprite.flip_h = true
-		
+
 	else:
 		get_parent().remove_child(self)

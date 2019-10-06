@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if shootCounter >= shootSpeed:
 		var temp = BULLET.instance();
 		temp.rotation_degrees = angle + offset;
-		temp.direction = direction;
+		temp.move_direction = direction;
 		add_child(temp);
 		shootCounter = 0
 
