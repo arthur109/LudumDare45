@@ -11,7 +11,7 @@ export (int) var ConqueredTileIndex
 export (int) var speed = 200
 onready var Sprite := $BaseSprite
 onready var Shader := $ColorRect
-var health = 3
+var health = 0.1
 
 var flinch_amount = 5
 var in_flinch = false
@@ -90,4 +90,5 @@ func _process(delta):
 			Sprite.flip_h = true
 
 	else:
+		GlobalInfo.points += 1
 		get_parent().remove_child(self)

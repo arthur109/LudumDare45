@@ -10,7 +10,7 @@ gradient = SubResource( 1 )
 [resource]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 2.65434e+14
+angular_velocity = 2.65434e+014
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 6.0
