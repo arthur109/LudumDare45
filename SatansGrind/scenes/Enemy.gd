@@ -23,9 +23,16 @@ func _ready():
 
 func take_damage(attacker):
 	current_flinch = FLINCH_TIME
-	velocity *= -2
+	print(velocity)
+	
+	var damage_direction = attacker.global_position + Vector2(1,1)
+	
+	velocity -= (global_position - damage_direction).normalized()*speed * 2
+	print(velocity,"    ",(global_position - damage_direction).normalized())
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
+	
+	
 
 func get_direction(var map) -> Vector2:
 	var leastDist = 1000
@@ -60,21 +67,25 @@ func process_attack():
 
 
 func _process(delta):
-	velocity = get_direction(map)
-	if !onBlock:
-		velocity = move_and_slide(velocity)*delta
+	if health > 0:
+		velocity = get_direction(map)
+		if !onBlock:
+			velocity = move_and_slide(velocity)*delta
+		else:
+			process_attack()
+
+		if (Sprite.get_animation() == "attack" and Sprite.frame == 9) and Sprite.get_animation() != "run":
+			Sprite.play("run")
+
+		current_flinch -= delta
+		if (current_flinch <= 0):
+			Sprite.modulate = Color(1,1,1,1)
+
+
+		if velocity.x > 0:
+			Sprite.flip_h = false
+		elif velocity.x < 0:
+			Sprite.flip_h = true
 	else:
-		process_attack()
-
-	if (Sprite.get_animation() == "attack" and Sprite.frame == 9) and Sprite.get_animation() != "run":
-		Sprite.play("run")
-
-	current_flinch -= delta
-	if (current_flinch <= 0):
-		Sprite.modulate = Color(1,1,1,1)
-
-
-	if velocity.x > 0:
-		Sprite.flip_h = false
-	elif velocity.x < 0:
-		Sprite.flip_h = true
+		self.visible = false
+		CollisionShape2D.disable = true

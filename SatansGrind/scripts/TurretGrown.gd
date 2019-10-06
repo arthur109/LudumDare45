@@ -14,7 +14,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	angle = getAngle();
-	print(angle)
+#	print(angle)
 	var offset =  (randf()*10)-5;
 	var direction = Vector2(cos(deg2rad(angle+offset)),sin(deg2rad(angle+offset)))
 	$Turret.rotation_degrees = angle-45;
@@ -33,7 +33,7 @@ func getAngle() -> float:
 	var enemys = get_node("../Enemies/").get_children();
 	var closestDir = Vector2(1,1);
 	var closestDistance = 100000;
-	print(enemys.size())
+#	print(enemys.size())
 	for x in enemys:
 		if global_position.distance_to(x.global_position) < closestDistance:
 			closestDistance = global_position.distance_to(x.global_position);
