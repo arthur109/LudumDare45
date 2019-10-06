@@ -5,16 +5,17 @@
 [ext_resource path="res://assets/turretbase.png" type="Texture" id=3]
 
 [node name="Turret" type="Node2D"]
-position = Vector2( 122.203, 220.318 )
-scale = Vector2( 8, 8 )
+scale = Vector2( 4, 4 )
 script = ExtResource( 1 )
 shootSpeed = 0.2
 
 [node name="Turret" type="Sprite" parent="."]
-position = Vector2( -0.00158179, 0.0031749 )
+position = Vector2( -0.0257092, 0.0110493 )
 z_index = 1
 texture = ExtResource( 2 )
-offset = Vector2( 2.65133, 2.63948 )
+offset = Vector2( 9.9361, 0.106003 )
 
 [node name="Base" type="Sprite" parent="."]
+modulate = Color( 0.301961, 0.0470588, 0.0470588, 1 )
+position = Vector2( -0.064167, -0.0641689 )
 texture = ExtResource( 3 )

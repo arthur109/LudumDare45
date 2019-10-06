@@ -17,14 +17,15 @@ func _process(delta: float) -> void:
 
 	var offset =  (randf()*10)-5;
 	var direction = Vector2(cos(deg2rad(angle+offset)),sin(deg2rad(angle+offset)))
-	$Turret.rotation_degrees = angle-45;
+	$Turret.rotation_degrees = angle;
 	$Turret.offset = Vector2(1,1)*pow(1-(shootCounter/shootSpeed),1);
 	shootCounter += delta;
 	if shootCounter >= shootSpeed:
 		var temp = BULLET.instance();
 		temp.rotation_degrees = angle + offset;
 		temp.move_direction = direction;
-		add_child(temp);
+		get_node("../Bullets").add_child(temp);
+		temp.global_position = global_position
 		shootCounter = 0
 
 
