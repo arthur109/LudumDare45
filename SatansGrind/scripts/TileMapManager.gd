@@ -12,7 +12,7 @@ var topIndexes = [25];
 
 var bottom;
 var top;
-
+onready var  BlockPlacer = get_node("../BlockPlacer")
 const PARTICLE_EFFECT = preload("res://scenes/BuildParticle.tscn")
 func _ready() -> void:
 	bottom = $LowerLayer
@@ -33,9 +33,8 @@ func buildWall(var x, var y) -> void:
 	get_parent().add_child(temp);
 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("place_block"):
-
+func _process(delta : float) -> void:
+	if Input.is_action_just_pressed("place_block") and BlockPlacer.isInBounds():
 
 		var mouse_pos = get_global_mouse_position()
 
@@ -48,3 +47,6 @@ func index_to_world(x,y) -> Vector2:
 func world_to_index(x,y) -> Vector2:
 	var pos = (Vector2(x,y)-global_position)/scale/bottom.get_cell_size()
 	return Vector2(int(pos.x),int(pos.y))
+
+func get_cell_size() -> Vector2:
+	return bottom.get_cell_size()*scale;

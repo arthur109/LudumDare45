@@ -120,6 +120,7 @@ shape = SubResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
 
 [node name="Dash" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 17 )
 
 [node name="CharacterTrail" type="Particles2D" parent="Dash"]

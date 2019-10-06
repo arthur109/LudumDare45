@@ -12,7 +12,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print("hi")
 	counter += delta;
 	if counter >= maxlife:
 		get_parent().remove_child(self)

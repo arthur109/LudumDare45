@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://AdditionalFiles/Copyright Free Rock Music Instrumental.wav" type="AudioStream" id=1]
 [ext_resource path="res://scripts/AudioStreamPlayer2D.gd" type="Script" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://scripts/TileMapManager.gd" type="Script" id=4]
 [ext_resource path="res://assets/new_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://scripts/BlockPlacer.gd" type="Script" id=6]
-[ext_resource path="res://scenes/Turret.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/EnemySpawner.gd" type="Script" id=8]
+[ext_resource path="res://assets/cursor.png" type="Texture" id=7]
+[ext_resource path="res://assets/selectionRect.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Turret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/EnemySpawner.gd" type="Script" id=10]
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,7 +28,6 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
 
 [node name="LowerLayer" type="TileMap" parent="TileMaps"]
-position = Vector2( 7.5, 0 )
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -45,16 +46,36 @@ z_index = 1
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131080, 26, 0, 196616, 26, 0, 262152, 26, 0, 327688, 26, 0, 393224, 26, 0, 393225, 26, 0, 393226, 26, 0, 393227, 26, 0, 393228, 26, 0, 393232, 26, 0, 393233, 26, 0, 393234, 26, 0, 393235, 26, 0, 393236, 26, 0, 458764, 26, 0, 458768, 26, 0, 458772, 26, 0, 524300, 26, 0, 524304, 26, 0, 524308, 26, 0, 589836, 26, 0, 589840, 26, 0, 589844, 26, 0, 655368, 26, 0, 655369, 26, 0, 655370, 26, 0, 655371, 26, 0, 655372, 26, 0, 655373, 26, 0, 655374, 26, 0, 655375, 26, 0, 655376, 26, 0, 655380, 26, 0, 720904, 26, 0, 720908, 26, 0, 720916, 26, 0, 786440, 26, 0, 786444, 26, 0, 786452, 26, 0, 851976, 26, 0, 851980, 26, 0, 851988, 26, 0, 917508, 26, 0, 917509, 26, 0, 917510, 26, 0, 917511, 26, 0, 917512, 26, 0, 917516, 26, 0, 917517, 26, 0, 917518, 26, 0, 917519, 26, 0, 917520, 26, 0, 917524, 26, 0, 983044, 26, 0, 983056, 26, 0, 983060, 26, 0, 1048580, 26, 0, 1048592, 26, 0, 1048595, 26, 0, 1048596, 26, 0, 1114116, 26, 0, 1114128, 26, 0, 1114131, 26, 0, 1179652, 26, 0, 1179653, 26, 0, 1179654, 26, 0, 1179655, 26, 0, 1179656, 26, 0, 1179657, 26, 0, 1179658, 26, 0, 1179659, 26, 0, 1179660, 26, 0, 1179661, 26, 0, 1179662, 26, 0, 1179663, 26, 0, 1179664, 26, 0, 1507367, 8, 0 )
+tile_data = PoolIntArray( 1507367, 8, 0 )
 
 [node name="BlockPlacer" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
-[node name="Turret" parent="." instance=ExtResource( 7 )]
+[node name="cursor" type="Sprite" parent="BlockPlacer"]
+position = Vector2( 543.995, 415.811 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BlockPlacer"]
+margin_left = 512.0
+margin_top = 256.0
+margin_right = 560.0
+margin_bottom = 304.0
+rect_scale = Vector2( 4, 4 )
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Turret" parent="." instance=ExtResource( 9 )]
 
 [node name="EnemySpawner" type="Node2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 8 )
+script = ExtResource( 10 )
 
 [node name="Point1" type="Position2D" parent="EnemySpawner"]
 position = Vector2( 18.9525, 14.44 )
