@@ -6,7 +6,7 @@ extends Sprite
 export var speed = 300;
 var move_direction = Vector2(1,0)
 var direction = Vector2(1,0)
-var damage = 1;
+var damage = 0.1;
 var explosion = preload("res://scenes/BulletDeath.tscn");
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
