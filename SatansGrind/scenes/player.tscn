@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -58,6 +58,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 32.7554, 62.2113 )
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
 collision_layer = 524289
@@ -67,7 +70,7 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 6
+frame = 9
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -132,3 +135,10 @@ one_shot = true
 explosiveness = 0.9
 local_coords = false
 process_material = ExtResource( 27 )
+
+[node name="Area2D" type="Area2D" parent="Dash"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash/Area2D"]
+shape = SubResource( 6 )
+[connection signal="area_entered" from="Dash/Area2D" to="Dash" method="_on_Area2D_area_entered"]
