@@ -9,6 +9,7 @@ export (int) var damage = 1
 var cooldown = 0
 var timer = 0
 var damaged = false
+var direction
 
 
 # Declare member variables here. Examples:
@@ -47,6 +48,8 @@ func start(dir):
 		
 		var dirRad = deg2rad(dir)
 		Player.velocity = Vector2(cos(dirRad), sin(dirRad)) * Player.speed * 3
+		
+		direction = Vector2(cos(dirRad), sin(dirRad))
 		
 		return self
 	
