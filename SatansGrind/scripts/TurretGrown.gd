@@ -24,14 +24,14 @@ func _process(delta: float) -> void:
 		var temp = BULLET.instance();
 		temp.rotation_degrees = angle + offset;
 		temp.move_direction = direction;
-		get_node("../Bullets").add_child(temp);
+		get_node("../../Bullets").add_child(temp);
 		temp.global_position = global_position
 		shootCounter = 0
 
 
 
 func getAngle() -> float:
-	var enemys = get_node("../Enemies/").get_children();
+	var enemys = get_node("../../Enemies/").get_children();
 	var closestDir = Vector2(1,1);
 	var closestDistance = 100000;
 

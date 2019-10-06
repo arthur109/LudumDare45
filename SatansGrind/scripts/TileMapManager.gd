@@ -15,6 +15,7 @@ var top;
 
 onready var  BlockPlacer = get_node("../BlockPlacer")
 const PARTICLE_EFFECT = preload("res://scenes/BuildParticle.tscn")
+const TURRET = preload("res://scenes/TurretSeed.tscn")
 func _ready() -> void:
 	bottom = $LowerLayer
 	top = $UpperLayer
@@ -43,6 +44,14 @@ func _process(delta : float) -> void:
 
 		var tile_pos = (mouse_pos-global_position)/scale/bottom.get_cell_size()
 		buildWall(int(tile_pos.x),int(tile_pos.y))
+		
+	if Input.is_action_just_pressed("place_turret") and BlockPlacer.isInBounds():
+
+
+		var temp = TURRET.instance();
+		var index = world_to_index(get_global_mouse_position().x,get_global_mouse_position().y)
+		temp.global_position = index_to_world(index.x,index.y)
+		get_node("../Turrets").add_child(temp);
 
 func index_to_world(x,y) -> Vector2:
 	return Vector2(int(x),int(y))*scale*bottom.get_cell_size()+global_position
