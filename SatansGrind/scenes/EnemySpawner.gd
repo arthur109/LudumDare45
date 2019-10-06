@@ -19,5 +19,5 @@ func _process(delta: float) -> void:
 	if _reload < 0:
 		var enemy = thingToSpawn.instance()
 		enemy.global_position = Vector2(rand_range(spawnRange[0].global_position.x, spawnRange[1].global_position.x), rand_range(spawnRange[0].global_position.y,spawnRange[1].global_position.y))
-		get_parent().add_child(enemy)
+		get_node("../Enemies").add_child(enemy)
 		_reload = reloadSpeed

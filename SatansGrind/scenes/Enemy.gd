@@ -10,7 +10,7 @@ onready var Sprite := $BaseSprite
 
 
 func _ready():
-	map = get_node("../TileMaps/ConqueredMap")
+	map = get_node("../../TileMaps/ConqueredMap")
 	Sprite.play("run")
 
 func get_direction(var map) -> Vector2:
@@ -24,8 +24,7 @@ func get_direction(var map) -> Vector2:
 				
 	if map.get_parent().world_to_index(closestPos.x,closestPos.y).x-map.get_parent().world_to_index(global_position.x,global_position.y).x < 1 and map.get_parent().world_to_index(closestPos.x,closestPos.y).y-map.get_parent().world_to_index(global_position.x,global_position.y).y < 1:
 		map.set_cell(map.get_parent().world_to_index(closestPos.x,closestPos.y).x,map.get_parent().world_to_index(closestPos.x,closestPos.y).y,-1)
-		print("dude")
-	print(map.get_parent().world_to_index(closestPos.x,closestPos.y))
+  
 
 
 	return (closestPos - global_position).normalized() * speed
