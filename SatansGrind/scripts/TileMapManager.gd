@@ -12,17 +12,18 @@ var topIndexes = [22];
 
 var bottom;
 var top;
-var floorlayer;
+
 onready var  BlockPlacer = get_node("../BlockPlacer")
 const PARTICLE_EFFECT = preload("res://scenes/BuildParticle.tscn")
 func _ready() -> void:
 	bottom = $LowerLayer
 	top = $UpperLayer
-	floorlayer = $Floor
+	print($Floor);
+
 
 	for x in range(0,GlobalInfo.worldWidth):
 		for y in range(0,GlobalInfo.worldHeight):
-			floorlayer.set_cell(x,y,groundIndexes[randi() % groundIndexes.size()]);
+			$Floor.set_cell(x,y,groundIndexes[randi() % groundIndexes.size()]);
 
 func buildWall(var x, var y) -> void:
 
