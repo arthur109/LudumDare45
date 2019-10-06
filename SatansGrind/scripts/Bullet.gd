@@ -20,7 +20,9 @@ func _process(delta: float) -> void:
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("enemies"):
 		area.get_parent().take_damage(self);
-	var temp = (explosion.instance())
-	temp.global_position = global_position
-	get_parent().add_child(temp)
-	get_parent().remove_child(self)
+		
+		if get_parent():
+			var temp = (explosion.instance())
+			temp.global_position = global_position
+			get_parent().add_child(temp)
+			get_parent().remove_child(self)

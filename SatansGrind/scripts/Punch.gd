@@ -26,12 +26,16 @@ func _process(delta):
 		Player.move_and_slide(Player.velocity / 6.0)
 		
 	if timer <= 0.1 and damaged == false:
+		var numEnemies = 0
 		for area in Area2D.get_overlapping_areas():
 			var parent = area.get_parent()
 			if parent.is_in_group("enemies"):
 				parent.take_damage(self)
-				get_node("../Camera2D").shake(1,20,1);
+
+				numEnemies += 1
 				
+		get_node("../Camera2D").shake(0.1,20, 10 * numEnemies if numEnemies < 5  else 50);
+		
 		damaged = true
 
 # Called when the node enters the scene tree for the first time.
