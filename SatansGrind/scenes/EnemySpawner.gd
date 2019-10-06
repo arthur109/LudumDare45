@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var thingToSpawn = preload("res://Scenes/Enemy.tscn")
+var thingToSpawn = preload("res://scenes/Enemy.tscn")
 export (float) var reloadSpeed = 5
 
 var _reload = reloadSpeed

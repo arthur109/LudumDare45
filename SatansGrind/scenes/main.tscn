@@ -34,7 +34,6 @@ format = 1
 tile_data = PoolIntArray( 1610612737, 0, 0, 1610612738, 0, 0 )
 
 [node name="ConqueredMap" type="TileMap" parent="TileMaps"]
-z_index = 1
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
 format = 1
