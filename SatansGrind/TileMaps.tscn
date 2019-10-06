@@ -31,6 +31,6 @@ z_index = 2
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 458761, 23, 0 )
+tile_data = PoolIntArray( 65537, 23, 0 )
 script = ExtResource( 3 )
 conquered_tile_index = 23

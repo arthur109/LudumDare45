@@ -11,7 +11,7 @@ export (int) var ConqueredTileIndex
 export (int) var speed = 200
 onready var Sprite := $BaseSprite
 onready var Shader := $ColorRect
-var health = 0.1
+var health = 3
 
 var flinch_amount = 5
 var in_flinch = false
@@ -23,14 +23,6 @@ var damage = 1
 func _ready():
 	map = get_node("../../TileMaps/ConqueredMap")
 	Sprite.play("run")
-
-func take_damage(attacker):
-	current_flinch = FLINCH_TIME
-	in_flinch = true
-	velocity += attacker.direction * speed * flinch_amount
-	Sprite.modulate = Color(0.8,0,0)
-	health -= attacker.damage
-
 
 
 func get_direction(var map) -> Vector2:
@@ -49,7 +41,7 @@ func get_direction(var map) -> Vector2:
 	var charX = map.get_parent().world_to_index(global_position.x,global_position.y).x
 	var charY = map.get_parent().world_to_index(global_position.x,global_position.y).y
 
-	onBlock = closestPosX-charX < 1 and closestPosY-charY < 1 and notOnGlobalPos
+	onBlock = abs(closestPosX-charX) < 1 and abs(closestPosY-charY) < 1 and notOnGlobalPos
 
 	return (closestPos - global_position).normalized() * speed
 
@@ -62,18 +54,30 @@ func process_attack():
 		map.update_dirty_quadrants()
 
 
+func take_damage(attacker):
+	current_flinch = FLINCH_TIME
+	in_flinch = true
+	velocity += attacker.direction * speed * flinch_amount
+	Sprite.modulate = Color(0.8,0,0)
+	health -= attacker.damage
+	Sprite.play("run")
+	onBlock = false
+
 func _process(delta):
 	if health > 0:
 		if !in_flinch:
 			velocity = get_direction(map)
+			
+			if !onBlock:
+				move_and_slide(velocity)*delta
+			else:
+				print("on block")
+				process_attack()
 		else:
-			print(velocity)
-			velocity*= 0.999
-
-		if !onBlock:
+			print("flinch")
+			velocity*= 0.99
 			move_and_slide(velocity)*delta
-		else:
-			process_attack()
+		
 
 		if (Sprite.get_animation() == "attack" and Sprite.frame == 9) and Sprite.get_animation() != "run":
 			Sprite.play("run")
