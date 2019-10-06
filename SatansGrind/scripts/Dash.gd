@@ -31,7 +31,7 @@ func _process(delta):
 	else:
 		if Area2D.monitoring:
 			Area2D.monitoring = false
-			get_node("../Camera2D").shake(0.1,20, 10 * numEnemies if numEnemies < 5 else 50);
+			get_node("../Camera2D").shake(0.2,20, 10 * numEnemies if numEnemies < 5 else 50);
 
 	
 	
@@ -53,13 +53,6 @@ func start(dir):
 
 func isFinished():
 	return dashTimer <= 0
-	
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_Area2D_area_entered(area):
 	var parent = area.get_parent()
