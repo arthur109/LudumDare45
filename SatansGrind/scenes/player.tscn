@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/character/running/running9.png" type="Texture" id=14]
 [ext_resource path="res://assets/character/running/running10.png" type="Texture" id=15]
 [ext_resource path="res://assets/character/running/running11.png" type="Texture" id=16]
+[ext_resource path="res://scripts/Dash.gd" type="Script" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -47,6 +48,27 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.844444 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.497694, 0, 0, 0.380392 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+color_ramp = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
 script = ExtResource( 1 )
@@ -55,10 +77,11 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.74707, 34.8373 )
+position = Vector2( 1.74707, 43.8497 )
 scale = Vector2( 5, 5 )
 shape = SubResource( 2 )
 
@@ -69,6 +92,7 @@ current = true
 smoothing_enabled = true
 
 [node name="Punch" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Area2D" type="Area2D" parent="Punch"]
 monitoring = false
@@ -79,9 +103,9 @@ shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Punch"]
 frames = SubResource( 4 )
-frame = -1
 
 [node name="Slash" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Area2D" type="Area2D" parent="Slash"]
 editor/display_folded = true
@@ -92,3 +116,24 @@ monitorable = false
 shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
+
+[node name="Dash" type="Node2D" parent="."]
+script = ExtResource( 17 )
+
+[node name="CharacterTrail" type="Particles2D" parent="Dash"]
+emitting = false
+amount = 16
+lifetime = 0.1
+one_shot = true
+local_coords = false
+process_material = SubResource( 8 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="Dash"]
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.9
+local_coords = false
+process_material = SubResource( 9 )
