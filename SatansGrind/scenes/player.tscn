@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -58,70 +58,8 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.244444, 0.733333, 1 )
-colors = PoolColorArray( 1, 0.392157, 0, 0, 0.957031, 0.322817, 0.153275, 1, 0.895508, 0.775432, 0.248363, 1, 0.898039, 0.690196, 0.207843, 0 )
-
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
-
-[sub_resource type="Curve" id=8]
-min_value = -200.0
-max_value = 200.0
-_data = [ Vector2( 0.5251, -119.68 ), 0.0, 10.3883, 0, 0, Vector2( 0.644322, 200 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
-
-[sub_resource type="Curve" id=10]
-max_value = 6.0
-_data = [ Vector2( 0.016835, 6 ), 0.0, 0.0, 0, 0, Vector2( 0.995715, 4.0296 ), 12.4214, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
-
-[sub_resource type="ParticlesMaterial" id=12]
-emission_shape = 1
-emission_sphere_radius = 18.65
-flag_disable_z = true
-spread = 16.55
-flatness = 1.0
-gravity = Vector3( 0, -100, 0 )
-initial_velocity_random = 0.63
-angular_velocity = 49.66
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 100.0
-linear_accel_random = 0.56
-linear_accel_curve = SubResource( 9 )
-radial_accel = -10.34
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 7 )
-hue_variation = 1.0
-hue_variation_random = 0.01
-
-[sub_resource type="Gradient" id=13]
-offsets = PoolRealArray( 0, 0.844444 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.497694, 0, 0, 0.380392 )
-
-[sub_resource type="GradientTexture" id=14]
-gradient = SubResource( 13 )
-
-[sub_resource type="ParticlesMaterial" id=15]
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-angular_velocity = 2.65434e+14
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 4.0
-color_ramp = SubResource( 14 )
-
-[sub_resource type="ParticlesMaterial" id=16]
-flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
-angular_velocity = 2.65434e+14
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 32.7554, 62.2113 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
@@ -132,7 +70,7 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 4
+frame = 9
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -177,16 +115,6 @@ shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
 
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 0.969238, -32.6534 )
-amount = 80
-lifetime = 1.5
-preprocess = 600.0
-speed_scale = 1.2
-randomness = 1.0
-local_coords = false
-process_material = SubResource( 12 )
-
 [node name="Dash" type="Node2D" parent="."]
 script = ExtResource( 25 )
 
@@ -196,7 +124,7 @@ amount = 16
 lifetime = 0.1
 one_shot = true
 local_coords = false
-process_material = SubResource( 15 )
+process_material = ExtResource( 26 )
 texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Dash"]
@@ -206,4 +134,11 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 0.9
 local_coords = false
-process_material = SubResource( 16 )
+process_material = ExtResource( 27 )
+
+[node name="Area2D" type="Area2D" parent="Dash"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash/Area2D"]
+shape = SubResource( 6 )
+[connection signal="area_entered" from="Dash/Area2D" to="Dash" method="_on_Area2D_area_entered"]

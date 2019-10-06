@@ -57,6 +57,32 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 327684, 23, 0, 327686, 23, 0, 327687, 23, 0, 327688, 23, 0, 327690, 23, 0, 393220, 23, 0, 393222, 23, 0, 393224, 23, 0, 393226, 23, 0, 458756, 23, 0, 458758, 23, 0, 458760, 23, 0, 458762, 23, 0, 524292, 23, 0, 524294, 23, 0, 524296, 23, 0, 524298, 23, 0, 589828, 23, 0, 589829, 23, 0, 589830, 23, 0, 589832, 23, 0, 589833, 23, 0, 589834, 23, 0 )
 
+[node name="TileMaps" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+script = ExtResource( 4 )
+
+[node name="LowerLayer" type="TileMap" parent="TileMaps"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+collision_mask = 3
+format = 1
+
+[node name="UpperLayer" type="TileMap" parent="TileMaps"]
+position = Vector2( 0, -32 )
+z_index = 2
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 1610612737, 0, 0, 1610612738, 0, 0 )
+
+[node name="ConqueredMap" type="TileMap" parent="TileMaps"]
+modulate = Color( 1, 1, 1, 0.392157 )
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 1507367, 8, 0 )
+
 [node name="BlockPlacer" type="Node2D" parent="."]
 editor/display_folded = true
 script = ExtResource( 6 )
