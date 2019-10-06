@@ -45,3 +45,7 @@ func _process(delta: float) -> void:
 func index_to_world(x,y) -> Vector2:
 	return Vector2(int(x),int(y))*scale*bottom.get_cell_size()+global_position
 	
+func world_to_index(x,y) -> Vector2:
+	var pos = (Vector2(x,y)-global_position)/scale/bottom.get_cell_size()
+	return Vector2(int(pos.x),int(pos.y))
+	
