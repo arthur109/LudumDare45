@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/running11.png-624e7b9123f1a086230ba7db735456b7.stex"
+path="res://.import/seed3.png-9aa89179c6ee78912340764563d46446.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/running with horns/running11.png"
-dest_files=[ "res://.import/running11.png-624e7b9123f1a086230ba7db735456b7.stex" ]
+source_file="res://assets/seed3.png"
+dest_files=[ "res://.import/seed3.png-9aa89179c6ee78912340764563d46446.stex" ]
 
 [params]
 
