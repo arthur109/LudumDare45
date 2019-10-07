@@ -1,45 +1,35 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving1.png" type="Texture" id=2]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving2.png" type="Texture" id=3]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving3.png" type="Texture" id=4]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving4.png" type="Texture" id=5]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving5.png" type="Texture" id=6]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving6.png" type="Texture" id=7]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving7.png" type="Texture" id=8]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving8.png" type="Texture" id=9]
-[ext_resource path="res://assets/Enemies/Angle/run/Moving9.png" type="Texture" id=10]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking1.png" type="Texture" id=11]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking2.png" type="Texture" id=12]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking3.png" type="Texture" id=13]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking4.png" type="Texture" id=14]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking5.png" type="Texture" id=15]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking6.png" type="Texture" id=16]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking7.png" type="Texture" id=17]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking8.png" type="Texture" id=18]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking9.png" type="Texture" id=19]
-[ext_resource path="res://assets/Enemies/Angle/attack/attacking1 (1).png" type="Texture" id=20]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking1.png" type="Texture" id=2]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking2.png" type="Texture" id=3]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking4.png" type="Texture" id=5]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking5.png" type="Texture" id=6]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking6.png" type="Texture" id=7]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking7.png" type="Texture" id=8]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking8.png" type="Texture" id=9]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking9.png" type="Texture" id=10]
+[ext_resource path="res://assets/Enemies/Angle/attack/attacking1 (1).png" type="Texture" id=11]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving1.png" type="Texture" id=12]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving2.png" type="Texture" id=13]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving3.png" type="Texture" id=14]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving4.png" type="Texture" id=15]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving5.png" type="Texture" id=16]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving6.png" type="Texture" id=17]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving7.png" type="Texture" id=18]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving8.png" type="Texture" id=19]
+[ext_resource path="res://assets/Enemies/Angle/run/Moving9.png" type="Texture" id=20]
 [ext_resource path="res://assets/InvertColorShader.tres" type="Material" id=21]
-[ext_resource path="res://assets/DashTrail.tres" type="Material" id=22]
-[ext_resource path="res://assets/DashParticles.tres" type="Material" id=23]
+[ext_resource path="res://assets/DashParticles.tres" type="Material" id=22]
+[ext_resource path="res://scripts/AngelicExplosion.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2211, 1.43324 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
-"loop": false,
-"name": "attack",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "flinch_attack",
 "speed": 10.0
@@ -48,6 +38,16 @@ animations = [ {
 "loop": false,
 "name": "flinch_run",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "attack",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -92,10 +92,9 @@ shape = SubResource( 3 )
 
 [node name="KnockBack" type="Node2D" parent="."]
 
-[node name="Trail" type="Particles2D" parent="KnockBack"]
-visible = false
-process_material = ExtResource( 22 )
-
 [node name="Particles2D" type="Particles2D" parent="KnockBack"]
 position = Vector2( -3.62893, -2.52447 )
-process_material = ExtResource( 23 )
+process_material = ExtResource( 22 )
+
+[node name="ExplosionDummy" type="Node2D" parent="."]
+script = ExtResource( 23 )
