@@ -11,6 +11,7 @@ export (int) var ConqueredTileIndex
 export (int) var speed = 200
 onready var Sprite := $BaseSprite
 onready var Shader := $ColorRect
+onready var Explosion := $ExplosionDummy
 var health = 3
 
 var flinch_amount = 5
@@ -71,10 +72,8 @@ func _process(delta):
 			if !onBlock:
 				move_and_slide(velocity)*delta
 			else:
-				print("on block")
 				process_attack()
 		else:
-			print("flinch")
 			velocity*= 0.99
 			move_and_slide(velocity)*delta
 		
@@ -95,4 +94,6 @@ func _process(delta):
 
 	else:
 		GlobalInfo.points += 1
-		get_parent().remove_child(self)
+		Explosion.explode(velocity)
+		move_and_slide(velocity)*delta
+#		get_parent().remove_child(self)

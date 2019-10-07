@@ -4,7 +4,7 @@ extends Node2D
 # var a: int = 2
 # var b: String = "text"
 
-export(float) var maxlife = 0.5;
+export(float) var maxlife = 0.3;
 var counter = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
