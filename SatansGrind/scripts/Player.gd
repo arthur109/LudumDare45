@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-export (bool) var canDash = true
 
 #export (float) var reloadSpeed
 #var reload = reloadSpeed
@@ -20,10 +19,26 @@ onready var Dash := $Dash
 onready var Punch := $Punch
 onready var Slash := $Slash
 
-
-
 func _process(delta):
 	pass
+	
+func can_dash():
+	return GlobalInfo.points >= 2
+	
+func can_slash():
+	return GlobalInfo.points >= 4
+	
+func get_idle():
+	if can_dash():
+		return "idle_horns"
+	else:
+		return "idle"
+	
+func get_run():
+	if can_dash():
+		return "run_horns"
+	else:
+		return "run"
 	
 func get_dir_input():
 	var inputVelocity = Vector2()
@@ -102,26 +117,25 @@ func _physics_process(delta):
 	if currentAbility == null:
 		move()
 				
-	if Input.is_action_pressed('dash') and not currentAbility:
+	if Input.is_action_pressed('dash') and not currentAbility and can_dash():
 		currentAbility = Dash.start(intendedDir)
+		
+	if Input.is_action_pressed("slash") and not currentAbility and can_slash():
+		currentAbility = Slash.start(closestEnemyDir if closestEnemyDir != null else intendedDir)
 		
 	if Input.is_action_pressed("punch") and not currentAbility:
 		currentAbility = Punch.start(closestEnemyDir if closestEnemyDir != null else intendedDir)
-		
-	if Input.is_action_pressed("slash") and not currentAbility:
-		currentAbility = Slash.start(closestEnemyDir if closestEnemyDir != null else intendedDir)
-
 		
 	if currentAbility:
 		if currentAbility.isFinished():
 			currentAbility = null
 		
 	if velocity.x != 0 or velocity.y != 0:
-		if Sprite.get_animation() != "run":
-			Sprite.play("run")
+		if Sprite.get_animation() != get_run():
+			Sprite.play(get_run())
 	else:
-		if Sprite.get_animation() != "idle":
-			Sprite.play("idle")
+		if Sprite.get_animation() != get_idle():
+			Sprite.play(get_idle())
 		
 	if velocity.x > 0:
 		Sprite.flip_h = false
