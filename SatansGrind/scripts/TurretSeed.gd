@@ -14,9 +14,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	counter += delta;
 	if (counter > maxCounter):
-		if randf() <= 0.1:
+		if randf() <= 0.2:
 			var temp = TURRET.instance();
-			temp.global_position = global_position; 
+			temp.global_position = global_position+Vector2(8*4,8*4); 
 			get_parent().add_child(temp);
 		get_parent().remove_child(self);
 		
