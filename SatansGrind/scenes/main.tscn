@@ -18,6 +18,7 @@ volume_db = -80.0
 script = ExtResource( 2 )
 
 [node name="Enemies" type="Node2D" parent="."]
+z_index = 1
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 z_index = 1
