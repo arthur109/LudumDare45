@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/character/idle/idle1.png" type="Texture" id=2]
@@ -25,9 +25,16 @@
 [ext_resource path="res://assets/character/Punch/punch5.png" type="Texture" id=23]
 [ext_resource path="res://assets/character/Punch/punch6.png" type="Texture" id=24]
 [ext_resource path="res://assets/character/Punch/punch7.png" type="Texture" id=25]
-[ext_resource path="res://scripts/Dash.gd" type="Script" id=26]
-[ext_resource path="res://assets/DashTrail.tres" type="Material" id=27]
-[ext_resource path="res://assets/DashParticles.tres" type="Material" id=28]
+[ext_resource path="res://scripts/Slash.gd" type="Script" id=26]
+[ext_resource path="res://assets/character/slash/slash effect1.png" type="Texture" id=27]
+[ext_resource path="res://assets/character/slash/slash effect2.png" type="Texture" id=28]
+[ext_resource path="res://assets/character/slash/slash effect3.png" type="Texture" id=29]
+[ext_resource path="res://assets/character/slash/slash effect4.png" type="Texture" id=30]
+[ext_resource path="res://assets/character/slash/slash effect5.png" type="Texture" id=31]
+[ext_resource path="res://assets/character/slash/slash effect6.png" type="Texture" id=32]
+[ext_resource path="res://scripts/Dash.gd" type="Script" id=33]
+[ext_resource path="res://assets/DashTrail.tres" type="Material" id=34]
+[ext_resource path="res://assets/DashParticles.tres" type="Material" id=35]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -59,8 +66,18 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 38.3135, 57.016 )
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), null ],
+"loop": false,
+"name": "default",
+"speed": 40.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 29.4104, 59.2845 )
+
+[sub_resource type="CircleShape2D" id=8]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
@@ -71,7 +88,7 @@ script = ExtResource( 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 9
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -87,6 +104,7 @@ smoothing_enabled = true
 script = ExtResource( 17 )
 
 [node name="Punch" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 18 )
 
 [node name="Area2D" type="Area2D" parent="Punch"]
@@ -104,20 +122,28 @@ frame = 7
 playing = true
 
 [node name="Slash" type="Node2D" parent="."]
-editor/display_folded = true
+position = Vector2( 0, 12.6796 )
+script = ExtResource( 26 )
 
 [node name="Area2D" type="Area2D" parent="Slash"]
 editor/display_folded = true
-monitoring = false
+position = Vector2( 52.961, 0 )
+scale = Vector2( 2.01687, -2.18586 )
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/Area2D"]
 shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Slash"]
+position = Vector2( 67.595, 0 )
+rotation = 1.57079
+scale = Vector2( 5.16545, 5.16545 )
+frames = SubResource( 7 )
+frame = 6
+playing = true
 
 [node name="Dash" type="Node2D" parent="."]
-script = ExtResource( 26 )
+script = ExtResource( 33 )
 
 [node name="CharacterTrail" type="Particles2D" parent="Dash"]
 emitting = false
@@ -125,7 +151,7 @@ amount = 16
 lifetime = 0.1
 one_shot = true
 local_coords = false
-process_material = ExtResource( 27 )
+process_material = ExtResource( 34 )
 texture = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="Dash"]
@@ -135,7 +161,7 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 0.9
 local_coords = false
-process_material = ExtResource( 28 )
+process_material = ExtResource( 35 )
 
 [node name="Area2D" type="Area2D" parent="Dash"]
 monitoring = false
@@ -143,4 +169,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dash/Area2D"]
 shape = SubResource( 6 )
+
+[node name="AttackRadius" type="Area2D" parent="."]
+monitorable = false
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+scale = Vector2( 18.2053, 18.2053 )
+shape = SubResource( 8 )
 [connection signal="area_entered" from="Dash/Area2D" to="Dash" method="_on_Area2D_area_entered"]
