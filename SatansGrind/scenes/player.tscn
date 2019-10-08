@@ -6,26 +6,26 @@
 [ext_resource path="res://assets/character/idle/idle3.png" type="Texture" id=4]
 [ext_resource path="res://assets/character/idle/idle4.png" type="Texture" id=5]
 [ext_resource path="res://assets/character/idle/idle5.png" type="Texture" id=6]
-[ext_resource path="res://assets/character/running with horns/running2.png" type="Texture" id=7]
-[ext_resource path="res://assets/character/running with horns/running3.png" type="Texture" id=8]
-[ext_resource path="res://assets/character/running with horns/running4.png" type="Texture" id=9]
-[ext_resource path="res://assets/character/running with horns/running5.png" type="Texture" id=10]
-[ext_resource path="res://assets/character/running with horns/running6.png" type="Texture" id=11]
-[ext_resource path="res://assets/character/running with horns/running7.png" type="Texture" id=12]
-[ext_resource path="res://assets/character/running with horns/running8.png" type="Texture" id=13]
-[ext_resource path="res://assets/character/running with horns/running9.png" type="Texture" id=14]
-[ext_resource path="res://assets/character/running with horns/running10.png" type="Texture" id=15]
-[ext_resource path="res://assets/character/running with horns/running11.png" type="Texture" id=16]
-[ext_resource path="res://assets/character/running/running2.png" type="Texture" id=17]
-[ext_resource path="res://assets/character/running/running3.png" type="Texture" id=18]
-[ext_resource path="res://assets/character/running/running4.png" type="Texture" id=19]
-[ext_resource path="res://assets/character/running/running5.png" type="Texture" id=20]
-[ext_resource path="res://assets/character/running/running6.png" type="Texture" id=21]
-[ext_resource path="res://assets/character/running/running7.png" type="Texture" id=22]
-[ext_resource path="res://assets/character/running/running8.png" type="Texture" id=23]
-[ext_resource path="res://assets/character/running/running9.png" type="Texture" id=24]
-[ext_resource path="res://assets/character/running/running10.png" type="Texture" id=25]
-[ext_resource path="res://assets/character/running/running11.png" type="Texture" id=26]
+[ext_resource path="res://assets/character/running/running2.png" type="Texture" id=7]
+[ext_resource path="res://assets/character/running/running3.png" type="Texture" id=8]
+[ext_resource path="res://assets/character/running/running4.png" type="Texture" id=9]
+[ext_resource path="res://assets/character/running/running5.png" type="Texture" id=10]
+[ext_resource path="res://assets/character/running/running6.png" type="Texture" id=11]
+[ext_resource path="res://assets/character/running/running7.png" type="Texture" id=12]
+[ext_resource path="res://assets/character/running/running8.png" type="Texture" id=13]
+[ext_resource path="res://assets/character/running/running9.png" type="Texture" id=14]
+[ext_resource path="res://assets/character/running/running10.png" type="Texture" id=15]
+[ext_resource path="res://assets/character/running/running11.png" type="Texture" id=16]
+[ext_resource path="res://assets/character/running with horns/running2.png" type="Texture" id=17]
+[ext_resource path="res://assets/character/running with horns/running3.png" type="Texture" id=18]
+[ext_resource path="res://assets/character/running with horns/running4.png" type="Texture" id=19]
+[ext_resource path="res://assets/character/running with horns/running5.png" type="Texture" id=20]
+[ext_resource path="res://assets/character/running with horns/running6.png" type="Texture" id=21]
+[ext_resource path="res://assets/character/running with horns/running7.png" type="Texture" id=22]
+[ext_resource path="res://assets/character/running with horns/running8.png" type="Texture" id=23]
+[ext_resource path="res://assets/character/running with horns/running9.png" type="Texture" id=24]
+[ext_resource path="res://assets/character/running with horns/running10.png" type="Texture" id=25]
+[ext_resource path="res://assets/character/running with horns/running11.png" type="Texture" id=26]
 [ext_resource path="res://assets/character/idle with horns/idle1.png" type="Texture" id=27]
 [ext_resource path="res://assets/character/idle with horns/idle2.png" type="Texture" id=28]
 [ext_resource path="res://assets/character/idle with horns/idle3.png" type="Texture" id=29]
@@ -62,12 +62,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "run_horns",
+"name": "run",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
 "loop": true,
-"name": "run",
+"name": "run_horns",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
@@ -134,6 +134,7 @@ extents = Vector2( 29.4104, 59.2845 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 585.947, 464.316 )
+z_index = 2
 collision_layer = 524289
 script = ExtResource( 1 )
 
@@ -142,7 +143,7 @@ modulate = Color( 2, 2, 2, 1 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 1 )
 animation = "run_horns"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -168,11 +169,14 @@ margin_bottom = 137.0
 
 [node name="Node2D" type="Node2D" parent="Camera2D"]
 position = Vector2( -119.374, -68.0512 )
+z_index = 5
 script = ExtResource( 33 )
 
 [node name="GUI" parent="Camera2D/Node2D" instance=ExtResource( 34 )]
-margin_left = 0.0
-margin_right = 0.0
+margin_left = -7.03048
+margin_top = -12.5177
+margin_right = -7.03048
+margin_bottom = -12.5177
 
 [node name="Punch" type="Node2D" parent="."]
 editor/display_folded = true

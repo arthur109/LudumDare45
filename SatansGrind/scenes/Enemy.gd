@@ -61,6 +61,8 @@ func take_damage(attacker):
 	velocity += attacker.direction * speed * flinch_amount
 	Sprite.modulate = Color(0.8,0,0)
 	health -= attacker.damage
+	if(health <= 0):
+		GlobalInfo.points += 1
 	Sprite.play("run")
 	onBlock = false
 
@@ -93,7 +95,6 @@ func _process(delta):
 			Sprite.flip_h = true
 
 	else:
-		GlobalInfo.points += 1
 		Explosion.explode(velocity)
 		move_and_slide(velocity)*delta
 #		get_parent().remove_child(self)

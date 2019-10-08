@@ -13,17 +13,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	lastUpdateCounter += delta;
 	var size = 1/pow(lastUpdateCounter,3)/20;
-	print("size:");
-	print(size)
-	print("last update:");
-	print(lastUpdateCounter);
-	print("scale:");
-	print(scale)
+#	print("size:");
+#	print(size)
+#	print("last update:");
+#	print(lastUpdateCounter);
+#	print("scale:");
+#	print(scale)
+#	print("pos:");
+#	print(lastUpdateCounter)
 	scale.x = 0.5+size;
 	scale.y = 0.5+size;
-	
 	if lastValue != GlobalInfo.points:
-		lastUpdateCounter = 0.05;
+		print("update");
+#		print(lastValue);
+#		print(GlobalInfo.points)
+		lastUpdateCounter = 0.25;
 		lastValue = GlobalInfo.points
 		
 	get_node("GUI/Label").set_text(String(GlobalInfo.points))
